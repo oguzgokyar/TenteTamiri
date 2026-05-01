@@ -3545,8 +3545,12 @@ input[type="url"]:focus {
   }
 
   .slider-info-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: -3.6rem;
+  }
+
+  .hero-slide__copy .button-row {
+    display: none;
   }
 
   .hero-slide,
@@ -3782,8 +3786,27 @@ input[type="url"]:focus {
   }
 
   .slider-info-cards {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0.85rem;
+    max-width: none;
     margin-top: -2.6rem;
-    padding-bottom: 1rem;
+    padding: 0 1rem 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slider-info-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider-info-card {
+    flex: 0 0 min(82vw, 360px);
+    min-height: 188px;
+    scroll-snap-align: start;
   }
 
   .page-hero {
