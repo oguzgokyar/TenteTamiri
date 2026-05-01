@@ -444,22 +444,58 @@ function antigravity_service_page_content(string $slug): ?array {
 		],
 		'sss'        => [
 			'eyebrow'     => 'SSS',
-			'description' => 'Tente ve pergola servis surecinde en cok sorulan sorulari tek yerde topladik.',
+			'description' => 'Istanbul tente tamiri, pergola tamiri, zip perde tamiri, tente motoru, kumas degisimi ve mekanizma onarimi hakkinda en cok sorulan sorular.',
 			'sections'    => [
 				[
 					'type' => 'faq',
 					'faq'  => [
 						[
-							'q' => 'Ayni gun servis veriyor musunuz?',
-							'a' => 'Lokasyon ve yogunluga gore ayni gun planlama yapabiliyoruz; en hizli yol WhatsApp uzerinden gorsel paylasmanizdir.',
+							'q' => 'Istanbul tente tamiri icin hangi arizalara bakiyorsunuz?',
+							'a' => 'Mafsalli tente, kasetli tente, koruklu tente ve motorlu tente sistemlerinde kumas yirtigi, sarkma, motor arizasi, kumanda problemi, kol, mafsal ve mekanizma zorlanmasi gibi sorunlara yerinde servis destegi veriyoruz.',
 						],
 						[
-							'q' => 'Sadece tamir mi yapiyorsunuz?',
-							'a' => 'Ana odagimiz tamir ve bakimdir. Gerekli oldugunda kumas, motor veya mekanik parcada degisim de sagliyoruz.',
+							'q' => 'Pergola tamiri ve pergola servisi hangi durumlarda gerekir?',
+							'a' => 'Pergola tavan acilip kapanmiyorsa, rayda surtme varsa, motor zor calisiyorsa, kumas formunu kaybettiyse veya su tahliye problemi olusuyorsa pergola servisi gerekir. Once ariza nedeni kontrol edilir, sonra tamir, bakim veya parca degisimi netlestirilir.',
 						],
 						[
-							'q' => 'Istanbulun her ilcesine geliyor musunuz?',
-							'a' => 'Evet, Istanbul geneline servis sagliyoruz. En hizli planlama icin ilce ve ariza bilgisini bize iletmeniz yeterlidir.',
+							'q' => 'Zip perde tamiri icin motor ve ray arizalarina bakiyor musunuz?',
+							'a' => 'Evet. Zip perde sistemlerinde motorun tepki vermemesi, kumanda algilamamasi, ray icinde takilma, kumas geriliminin bozulmasi ve dengesiz inme-kalkma gibi arizalarda kontrol ve servis planlamasi yapiyoruz.',
+						],
+						[
+							'q' => 'Tente motoru tamiri mi yoksa motor degisimi mi gerekir?',
+							'a' => 'Bu karar motorun durumuna gore verilir. Limit ayari, kumanda, alici kart veya baglanti problemi varsa tamir ve ayar yeterli olabilir. Motor yanmis, guc kaybetmis veya sistemi tasiyamiyorsa degisim daha dogru cozum olabilir.',
+						],
+						[
+							'q' => 'Tente kumasi degisimi ne zaman yapilir?',
+							'a' => 'Kumas yirtildiysa, asiri solduysa, sarkma olustuysa, su geciriyorsa veya mekanizma saglam oldugu halde kullanim konforu dustuyse tente kumasi degisimi dusunulur. Olcu ve sistem yapisi kontrol edilerek uygun kumas yenileme planlanir.',
+						],
+						[
+							'q' => 'Mekanizma ve mafsal onarimi hangi belirtilerde gerekir?',
+							'a' => 'Tente acilirken zorlanma, yamuk kapanma, kol boslugu, surtme sesi, kaset kapanis problemi veya mafsal gevsemesi varsa mekanizma ve mafsal noktalarinin kontrol edilmesi gerekir. Sistemi zorlamadan servis talebi olusturmak daha buyuk hasari onler.',
+						],
+						[
+							'q' => 'Ayni gun tente servisi alabilir miyim?',
+							'a' => 'Ilce, ekip yogunlugu ve ariza durumuna gore ayni gun servis planlamasi yapilabilir. En hizli donus icin telefonla arayabilir veya WhatsApp uzerinden sistemin fotografini ve bulundugunuz ilceyi gonderebilirsiniz.',
+						],
+						[
+							'q' => 'Istanbulun tum ilcelerine servis geliyor musunuz?',
+							'a' => 'Evet. Sultanbeyli merkezli olarak Istanbul genelinde ilce bazli servis planlamasi yapiyoruz. Anadolu Yakasi ve Avrupa Yakasi taleplerinde ilce, ariza tipi ve musait zaman bilgisine gore ekip yonlendirmesi yapilir.',
+						],
+						[
+							'q' => 'WhatsApp ile ariza gorseli gondermek yeterli olur mu?',
+							'a' => 'Cogu durumda ilk degerlendirme icin fotograf veya kisa video cok yardimci olur. Yine de kesin karar yerinde kontrol ile verilir. Gorsel paylasmaniz ekibin dogru takim ve parca ihtimalini daha iyi planlamasini saglar.',
+						],
+						[
+							'q' => 'Ucretsiz kesif ve teklif nasil ilerliyor?',
+							'a' => 'Once telefon veya WhatsApp ile ariza bilgisi alinir. Gerekirse gorsel incelenir, ardindan adres ve ilceye gore servis planlanir. Yerinde tespit sonrasi tamir, bakim veya degisim secenekleri net sekilde aktarilir.',
+						],
+						[
+							'q' => 'Tente tamircisi ararken hangi bilgileri vermeliyim?',
+							'a' => 'Ilceniz, sistem tipi, arizanin belirtisi, sistemin motorlu olup olmadigi ve mumkunse bir fotograf yeterlidir. Ornegin "tente kapanmiyor", "motor ses yapiyor" veya "kumas yirtildi" gibi net ifadeler servis surecini hizlandirir.',
+						],
+						[
+							'q' => 'Tamir mi yeni sistem kurulumu mu daha mantikli?',
+							'a' => 'Mekanizma, motor veya kumas ekonomik sekilde onarilabiliyorsa tamir daha mantikli olabilir. Sistem cok eski, parca uyumsuz veya guvenli kullanim riski varsa yeni sistem ya da kapsamli yenileme daha dogru olabilir. Karar yerinde tespit sonrasi verilir.',
 						],
 					],
 				],
