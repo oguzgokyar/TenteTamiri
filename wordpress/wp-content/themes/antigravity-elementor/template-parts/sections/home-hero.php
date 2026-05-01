@@ -100,8 +100,8 @@ $info_cards = [
 							<h1><?php echo esc_html($slide['title']); ?></h1>
 							<p><?php echo esc_html($slide['description']); ?></p>
 							<div class="button-row">
-								<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
-								<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
+					<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
+					<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
 							</div>
 						</div>
 					</div>
@@ -147,7 +147,7 @@ $info_cards = [
 		</div>
 		<div class="service-carousel__track" data-card-track>
 			<?php foreach ($service_cards as $card) : ?>
-				<a class="service-carousel__card" href="<?php echo esc_url($card['url']); ?>" style="background-image: linear-gradient(180deg, rgba(12, 20, 26, 0.12), rgba(12, 20, 26, 0.95)), url('<?php echo esc_url($card['image']); ?>');">
+					<a class="service-carousel__card" href="<?php echo esc_url($card['url']); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet sayfasini incele', 'antigravity-elementor'), $card['title'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet sayfasini incele', 'antigravity-elementor'), $card['title'])); ?>" style="background-image: linear-gradient(180deg, rgba(12, 20, 26, 0.12), rgba(12, 20, 26, 0.95)), url('<?php echo esc_url($card['image']); ?>');">
 					<div class="service-carousel__visual">
 						<?php echo antigravity_icon($card['icon'], 'icon-mark icon-mark--light'); ?>
 						<span class="service-carousel__badge"><?php esc_html_e('Hizmete Git', 'antigravity-elementor'); ?></span>

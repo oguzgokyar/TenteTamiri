@@ -45,7 +45,7 @@ $service_links = [
 			<h2><?php esc_html_e('Hizmetler', 'antigravity-elementor'); ?></h2>
 			<nav class="service-sidebar-menu" aria-label="<?php esc_attr_e('Hizmet sayfalari', 'antigravity-elementor'); ?>">
 				<?php foreach ($service_links as $link) : ?>
-					<a href="<?php echo esc_url($link['url']); ?>">
+					<a href="<?php echo esc_url($link['url']); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet sayfasina git', 'antigravity-elementor'), $link['label'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet sayfasina git', 'antigravity-elementor'), $link['label'])); ?>">
 						<?php echo antigravity_icon($link['icon'], 'icon-mark icon-mark--ghost'); ?>
 						<span><?php echo esc_html($link['label']); ?></span>
 					</a>
@@ -53,7 +53,7 @@ $service_links = [
 			</nav>
 		</section>
 
-		<a class="service-sidebar-feature service-sidebar-feature--references" href="<?php echo esc_url(home_url('/referanslar/')); ?>" data-reveal="lift">
+		<a class="service-sidebar-feature service-sidebar-feature--references" href="<?php echo esc_url(home_url('/referanslar/')); ?>" title="<?php esc_attr_e('Referanslar sayfasini incele', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Referanslar sayfasini incele', 'antigravity-elementor'); ?>" data-reveal="lift">
 			<span class="service-sidebar-feature__icon"><?php echo antigravity_icon('shield', 'icon-mark icon-mark--light'); ?></span>
 			<span class="eyebrow"><?php esc_html_e('Referanslarimiz', 'antigravity-elementor'); ?></span>
 			<strong><?php esc_html_e('Tamamlanan isleri ve uygulama alanlarini inceleyin.', 'antigravity-elementor'); ?></strong>
@@ -61,7 +61,7 @@ $service_links = [
 			<span class="service-sidebar-feature__arrow" aria-hidden="true">+</span>
 		</a>
 
-		<a class="service-sidebar-feature service-sidebar-feature--video" href="<?php echo esc_url(home_url('/video-galeri/')); ?>" data-reveal="lift">
+		<a class="service-sidebar-feature service-sidebar-feature--video" href="<?php echo esc_url(home_url('/video-galeri/')); ?>" title="<?php esc_attr_e('Video galeri sayfasini incele', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Video galeri sayfasini incele', 'antigravity-elementor'); ?>" data-reveal="lift">
 			<span class="service-sidebar-feature__icon"><?php echo antigravity_icon('play', 'icon-mark icon-mark--light'); ?></span>
 			<span class="eyebrow"><?php esc_html_e('Video Galeri', 'antigravity-elementor'); ?></span>
 			<strong><?php esc_html_e('Servis surecini videolarla gorun.', 'antigravity-elementor'); ?></strong>

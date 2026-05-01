@@ -7,7 +7,7 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-card'); ?>>
-	<a class="post-card__inner" href="<?php the_permalink(); ?>">
+<a class="post-card__inner" href="<?php the_permalink(); ?>" title="<?php echo esc_attr(sprintf(__('%s yazisini oku', 'antigravity-elementor'), get_the_title())); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s yazisini oku', 'antigravity-elementor'), get_the_title())); ?>">
 		<?php if (has_post_thumbnail()) : ?>
 			<div class="post-card__media">
 				<?php the_post_thumbnail('large'); ?>
@@ -21,4 +21,3 @@
 		</div>
 	</a>
 </article>
-

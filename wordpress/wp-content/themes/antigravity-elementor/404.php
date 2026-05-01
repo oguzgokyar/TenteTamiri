@@ -15,8 +15,8 @@ get_header();
 				<h1><?php esc_html_e('Aradigin sayfa tasarim sisteminden cikmis olabilir.', 'antigravity-elementor'); ?></h1>
 				<p><?php esc_html_e('Ana sayfaya don, son projeleri incele veya bu alani Elementor ile kendi yonlendirme sayfana cevir.', 'antigravity-elementor'); ?></p>
 				<div class="button-row">
-					<a class="button" href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Ana Sayfa', 'antigravity-elementor'); ?></a>
-					<a class="button button--ghost" href="<?php echo esc_url(home_url('/iletisim')); ?>"><?php esc_html_e('Iletisime Gec', 'antigravity-elementor'); ?></a>
+			<a class="button" href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e('Ana sayfaya don', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Ana sayfaya don', 'antigravity-elementor'); ?>"><?php esc_html_e('Ana Sayfa', 'antigravity-elementor'); ?></a>
+			<a class="button button--ghost" href="<?php echo esc_url(home_url('/iletisim')); ?>" title="<?php esc_attr_e('Iletisim sayfasina git', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Iletisim sayfasina git', 'antigravity-elementor'); ?>"><?php esc_html_e('Iletisime Gec', 'antigravity-elementor'); ?></a>
 				</div>
 			</div>
 			<div class="hero__panel stats-card">
@@ -33,4 +33,3 @@ get_header();
 </main>
 <?php
 get_footer();
-

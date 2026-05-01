@@ -16,7 +16,7 @@
 						<?php if (has_custom_logo()) : ?>
 							<div class="site-footer__logo"><?php the_custom_logo(); ?></div>
 						<?php else : ?>
-							<a class="site-footer__mark" href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a>
+							<a class="site-footer__mark" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php esc_attr_e('Istanbul Tente Tamircisi ana sayfa', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi ana sayfa', 'antigravity-elementor'); ?>"><?php bloginfo('name'); ?></a>
 							<p class="site-footer__tag"><?php esc_html_e('Pergola, tente ve zip perde tamir servisi', 'antigravity-elementor'); ?></p>
 						<?php endif; ?>
 						<p class="site-footer__copy"><?php esc_html_e('Sultanbeyli merkezli servis ekibiyle Istanbul genelinde ariza tespiti, mekanizma onarimi, motor servisi ve kumas yenileme surecini kurumsal bir akista yonetiyoruz.', 'antigravity-elementor'); ?></p>
@@ -27,8 +27,8 @@
 						<h2><?php esc_html_e('Ariza kaydini hizlandiran modern destek hatti ve yerinde servis organizasyonu.', 'antigravity-elementor'); ?></h2>
 						<p><?php esc_html_e('Telefon, WhatsApp ve ilce bazli planlama ile talebi hizli sekilde kayda alip uygun ekibi yonlendiriyoruz.', 'antigravity-elementor'); ?></p>
 						<div class="button-row">
-							<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php echo esc_html(antigravity_contact_phone_display()); ?></a>
-							<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
+							<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_phone_display()); ?></a>
+							<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
 						</div>
 						<div class="site-footer__gallery">
 							<?php foreach ($antigravity_footer_visuals['gallery'] as $index => $visual) : ?>
@@ -56,9 +56,9 @@
 						<?php echo antigravity_icon('wrench', 'icon-mark icon-mark--light'); ?>
 						<h3><?php esc_html_e('One Cikan Hizmetler', 'antigravity-elementor'); ?></h3>
 						<ul class="footer-list">
-							<li><a href="<?php echo esc_url(home_url('/tente-tamiri/')); ?>"><?php esc_html_e('Tente Tamiri', 'antigravity-elementor'); ?></a></li>
-							<li><a href="<?php echo esc_url(home_url('/pergola-tamiri/')); ?>"><?php esc_html_e('Pergola Tamiri', 'antigravity-elementor'); ?></a></li>
-							<li><a href="<?php echo esc_url(home_url('/zip-perde-tamiri/')); ?>"><?php esc_html_e('Zip Perde Tamiri', 'antigravity-elementor'); ?></a></li>
+							<li><a href="<?php echo esc_url(home_url('/tente-tamiri/')); ?>" title="<?php esc_attr_e('Tente tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Tente tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>"><?php esc_html_e('Tente Tamiri', 'antigravity-elementor'); ?></a></li>
+							<li><a href="<?php echo esc_url(home_url('/pergola-tamiri/')); ?>" title="<?php esc_attr_e('Pergola tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Pergola tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>"><?php esc_html_e('Pergola Tamiri', 'antigravity-elementor'); ?></a></li>
+							<li><a href="<?php echo esc_url(home_url('/zip-perde-tamiri/')); ?>" title="<?php esc_attr_e('Zip perde tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Zip perde tamiri hizmet sayfasina git', 'antigravity-elementor'); ?>"><?php esc_html_e('Zip Perde Tamiri', 'antigravity-elementor'); ?></a></li>
 						</ul>
 					</div>
 
@@ -108,8 +108,8 @@
 			</div>
 		</footer>
 		<div class="mobile-sticky-cta">
-			<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
-			<a class="button button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
+			<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
+			<a class="button button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
 		</div>
 		<aside class="service-widget reveal-item is-visible" data-service-widget data-reveal="soft-zoom" aria-label="<?php esc_attr_e('Hizli servis yardim widgeti', 'antigravity-elementor'); ?>">
 			<button class="service-widget__close" type="button" data-service-widget-close aria-label="<?php esc_attr_e('Servis yardim widgetini gizle', 'antigravity-elementor'); ?>">
@@ -122,10 +122,10 @@
 				<?php echo antigravity_service_mascot_svg(); ?>
 			</div>
 			<div class="service-widget__actions">
-				<a class="button service-widget__button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>">
+				<a class="button service-widget__button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>">
 					<?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?>
 				</a>
-				<a class="button button--ghost service-widget__button service-widget__button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer">
+				<a class="button button--ghost service-widget__button service-widget__button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>">
 					<?php echo esc_html(antigravity_contact_whatsapp_label()); ?>
 				</a>
 			</div>

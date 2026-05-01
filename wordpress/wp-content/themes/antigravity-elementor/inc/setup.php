@@ -88,3 +88,36 @@ function antigravity_widgets_init(): void {
 	);
 }
 add_action('widgets_init', 'antigravity_widgets_init');
+
+function antigravity_nav_link_attributes(array $atts, WP_Post $item): array {
+	$label = trim(wp_strip_all_tags((string) $item->title));
+
+	if ('' !== $label && empty($atts['title'])) {
+		$atts['title'] = sprintf(__('%s sayfasina git', 'antigravity-elementor'), $label);
+	}
+
+	if ('' !== $label && empty($atts['aria-label'])) {
+		$atts['aria-label'] = $label;
+	}
+
+	if (! empty($atts['target']) && '_blank' === $atts['target']) {
+		$rel         = $atts['rel'] ?? '';
+		$rel_values  = array_filter(explode(' ', $rel));
+		$rel_values  = array_unique(array_merge($rel_values, ['noopener', 'noreferrer']));
+		$atts['rel'] = implode(' ', $rel_values);
+	}
+
+	return $atts;
+}
+add_filter('nav_menu_link_attributes', 'antigravity_nav_link_attributes', 10, 2);
+
+function antigravity_custom_logo_html(string $html): string {
+	if ('' === $html || false !== strpos($html, ' aria-label=')) {
+		return $html;
+	}
+
+	$label = esc_attr__('Istanbul Tente Tamircisi ana sayfa', 'antigravity-elementor');
+
+	return str_replace('<a ', '<a title="' . $label . '" aria-label="' . $label . '" ', $html);
+}
+add_filter('get_custom_logo', 'antigravity_custom_logo_html');

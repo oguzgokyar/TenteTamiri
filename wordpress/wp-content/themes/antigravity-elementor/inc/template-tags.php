@@ -174,7 +174,7 @@ function antigravity_render_breadcrumbs(): void {
 			<?php foreach ($items as $index => $item) : ?>
 				<li class="breadcrumb-list__item">
 					<?php if (! empty($item['url']) && $index < count($items) - 1) : ?>
-						<a href="<?php echo esc_url($item['url']); ?>"><?php echo esc_html($item['label']); ?></a>
+						<a href="<?php echo esc_url($item['url']); ?>" title="<?php echo esc_attr(sprintf(__('%s sayfasina git', 'antigravity-elementor'), $item['label'])); ?>" aria-label="<?php echo esc_attr($item['label']); ?>"><?php echo esc_html($item['label']); ?></a>
 					<?php else : ?>
 						<span aria-current="page"><?php echo esc_html($item['label']); ?></span>
 					<?php endif; ?>
@@ -197,6 +197,22 @@ function antigravity_render_rank_math_breadcrumbs(): bool {
 	if ('' === $markup) {
 		return false;
 	}
+
+	$markup = preg_replace_callback(
+		'/<a\b(?![^>]*\btitle=)([^>]*)>(.*?)<\/a>/is',
+		static function (array $matches): string {
+			$label = trim(wp_strip_all_tags($matches[2]));
+
+			if ('' === $label) {
+				return $matches[0];
+			}
+
+			$title = esc_attr(sprintf(__('%s sayfasina git', 'antigravity-elementor'), $label));
+
+			return '<a title="' . $title . '" aria-label="' . esc_attr($label) . '"' . $matches[1] . '>' . $matches[2] . '</a>';
+		},
+		$markup
+	);
 	?>
 	<nav class="breadcrumb-nav breadcrumb-nav--rankmath" aria-label="<?php esc_attr_e('Breadcrumb', 'antigravity-elementor'); ?>">
 		<?php echo wp_kses_post($markup); ?>
@@ -210,11 +226,12 @@ function antigravity_site_logo(string $class = 'site-logo'): string {
 	$logo_url = ANTIGRAVITY_THEME_URI . '/assets/images/istanbul-tente-logo.svg';
 
 	return sprintf(
-		'<a class="%1$s" href="%2$s" rel="home"><img src="%3$s" alt="%4$s" width="360" height="96"></a>',
+		'<a class="%1$s" href="%2$s" rel="home" title="%5$s" aria-label="%5$s"><img src="%3$s" alt="%4$s" width="360" height="96"></a>',
 		esc_attr($class),
 		esc_url(home_url('/')),
 		esc_url($logo_url),
-		esc_attr(get_bloginfo('name') ?: __('Istanbul Tente Tamircisi', 'antigravity-elementor'))
+		esc_attr(get_bloginfo('name') ?: __('Istanbul Tente Tamircisi', 'antigravity-elementor')),
+		esc_attr__('Istanbul Tente Tamircisi ana sayfa', 'antigravity-elementor')
 	);
 }
 
@@ -573,8 +590,8 @@ function antigravity_render_marketing_sections(array $sections): void {
 							<p><?php echo esc_html($section['copy']); ?></p>
 						</div>
 						<div class="button-row">
-							<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php echo esc_html($section['primary_label'] ?? __('Hemen Ara', 'antigravity-elementor')); ?></a>
-							<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($section['secondary_label'] ?? antigravity_contact_whatsapp_label()); ?></a>
+								<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php echo esc_html($section['primary_label'] ?? __('Hemen Ara', 'antigravity-elementor')); ?></a>
+								<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html($section['secondary_label'] ?? antigravity_contact_whatsapp_label()); ?></a>
 						</div>
 					</div>
 				</div>
@@ -596,7 +613,7 @@ function antigravity_render_marketing_sections(array $sections): void {
 					</div>
 					<div class="services-showcase-grid">
 						<?php foreach ($section['cards'] as $card) : ?>
-							<a class="services-showcase-card" href="<?php echo esc_url($card['url']); ?>" data-reveal="lift">
+					<a class="services-showcase-card" href="<?php echo esc_url($card['url']); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet sayfasini incele', 'antigravity-elementor'), $card['title'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet sayfasini incele', 'antigravity-elementor'), $card['title'])); ?>" data-reveal="lift">
 								<span class="services-showcase-card__media" style="background-image: linear-gradient(180deg, rgba(16, 26, 32, 0.02), rgba(16, 26, 32, 0.68)), url('<?php echo esc_url($card['image']); ?>');">
 									<?php echo antigravity_icon($card['icon'] ?? 'wrench', 'icon-mark icon-mark--light'); ?>
 									<?php if (! empty($card['badge'])) : ?>
@@ -935,8 +952,8 @@ function antigravity_render_marketing_sections(array $sections): void {
 							<p><?php echo esc_html($section['copy']); ?></p>
 						</div>
 						<div class="button-row">
-							<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php echo esc_html($section['primary_label'] ?? __('Hemen Ara', 'antigravity-elementor')); ?></a>
-							<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($section['secondary_label'] ?? antigravity_contact_whatsapp_label()); ?></a>
+								<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php echo esc_html($section['primary_label'] ?? __('Hemen Ara', 'antigravity-elementor')); ?></a>
+								<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html($section['secondary_label'] ?? antigravity_contact_whatsapp_label()); ?></a>
 						</div>
 					</div>
 				</div>
@@ -980,8 +997,8 @@ function antigravity_render_marketing_sections(array $sections): void {
 							<span><?php esc_html_e('Sultanbeyli merkezli servis noktasi', 'antigravity-elementor'); ?></span>
 						</div>
 						<div class="button-row">
-							<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
-							<a class="button button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
+				<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
+				<a class="button button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
 						</div>
 					</div>
 				</div>

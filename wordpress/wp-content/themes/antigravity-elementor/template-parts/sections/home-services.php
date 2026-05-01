@@ -61,7 +61,7 @@ $services = [
 					<p class="eyebrow"><?php esc_html_e('Servis', 'antigravity-elementor'); ?></p>
 					<h3><?php echo esc_html($service['title']); ?></h3>
 					<p><?php echo esc_html($service['description']); ?></p>
-					<a class="text-link" href="<?php echo esc_url(home_url('/' . sanitize_title($service['title']) . '/')); ?>"><?php esc_html_e('Detaylari incele', 'antigravity-elementor'); ?></a>
+					<a class="text-link" href="<?php echo esc_url(home_url('/' . sanitize_title($service['title']) . '/')); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>"><?php esc_html_e('Detaylari incele', 'antigravity-elementor'); ?></a>
 				</article>
 			<?php endforeach; ?>
 		</div>

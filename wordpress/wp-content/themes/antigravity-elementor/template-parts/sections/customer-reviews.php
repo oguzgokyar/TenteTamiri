@@ -32,7 +32,7 @@ $reviews = [
 				<p class="eyebrow"><?php esc_html_e('Musteri Yorumlari', 'antigravity-elementor'); ?></p>
 				<h2 id="customer-reviews-title"><?php esc_html_e('Servis sonrasi memnuniyet bizim icin en guclu referans.', 'antigravity-elementor'); ?></h2>
 				<p><?php esc_html_e('Tente, pergola ve zip perde servislerinde deneyiminizi Google uzerinden paylasarak yeni musterilerin dogru karar vermesine yardimci olabilirsiniz.', 'antigravity-elementor'); ?></p>
-				<a class="button" href="<?php echo esc_url($review_link); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Google Yorumu Birak', 'antigravity-elementor'); ?></a>
+			<a class="button" href="<?php echo esc_url($review_link); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('Google uzerinden yorum birak', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Google uzerinden yorum birak', 'antigravity-elementor'); ?>"><?php esc_html_e('Google Yorumu Birak', 'antigravity-elementor'); ?></a>
 			</div>
 			<div class="customer-review-grid">
 				<?php foreach ($reviews as $review) : ?>

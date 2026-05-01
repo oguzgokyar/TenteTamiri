@@ -58,7 +58,7 @@ $local_service_links = [
 			</div>
 			<nav class="service-regions-grid" aria-label="<?php esc_attr_e('Bolgeye gore hizmet sayfalari', 'antigravity-elementor'); ?>">
 				<?php foreach ($local_service_links as $link) : ?>
-					<a href="<?php echo esc_url($link['url']); ?>">
+						<a href="<?php echo esc_url($link['url']); ?>" title="<?php echo esc_attr(sprintf(__('%s bolge sayfasina git', 'antigravity-elementor'), $link['label'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s bolge sayfasina git', 'antigravity-elementor'), $link['label'])); ?>">
 						<span><?php echo esc_html($link['label']); ?></span>
 						<small><?php echo esc_html($link['note']); ?></small>
 					</a>
