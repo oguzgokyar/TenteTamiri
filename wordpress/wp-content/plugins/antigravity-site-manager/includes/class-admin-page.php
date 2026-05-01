@@ -11,12 +11,16 @@ if (! defined('ABSPATH')) {
 
 class AGSM_Admin_Page {
 	private AGSM_Content_Migrator $migrator;
+	private AGSM_GitHub_Updater $updater;
 
-	public function __construct(AGSM_Content_Migrator $migrator) {
+	public function __construct(AGSM_Content_Migrator $migrator, AGSM_GitHub_Updater $updater) {
 		$this->migrator = $migrator;
+		$this->updater  = $updater;
 
 		add_action('admin_menu', [$this, 'register_menu']);
 		add_action('admin_post_agsm_apply_migrations', [$this, 'handle_apply']);
+		add_action('admin_post_agsm_save_github_settings', [$this, 'handle_save_github_settings']);
+		add_action('admin_post_agsm_sync_github', [$this, 'handle_sync_github']);
 	}
 
 	public function register_menu(): void {
@@ -53,6 +57,61 @@ class AGSM_Admin_Page {
 		exit;
 	}
 
+	public function handle_save_github_settings(): void {
+		if (! current_user_can('manage_options')) {
+			wp_die(esc_html__('Bu islem icin yetkiniz yok.', 'antigravity-site-manager'));
+		}
+
+		check_admin_referer('agsm_save_github_settings');
+
+		try {
+			$this->updater->update_settings($_POST);
+			$notice = 'github_settings_saved';
+		} catch (Throwable $error) {
+			$notice = 'github_error';
+		}
+
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'page'        => 'agsm-site-manager',
+					'agsm_notice' => $notice,
+				],
+				admin_url('admin.php')
+			)
+		);
+		exit;
+	}
+
+	public function handle_sync_github(): void {
+		if (! current_user_can('manage_options')) {
+			wp_die(esc_html__('Bu islem icin yetkiniz yok.', 'antigravity-site-manager'));
+		}
+
+		check_admin_referer('agsm_sync_github');
+
+		try {
+			$this->updater->sync_from_github();
+			$notice = 'github_synced';
+			$message = '';
+		} catch (Throwable $error) {
+			$notice  = 'github_error';
+			$message = rawurlencode($error->getMessage());
+		}
+
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'page'         => 'agsm-site-manager',
+					'agsm_notice'  => $notice,
+					'agsm_message' => $message,
+				],
+				admin_url('admin.php')
+			)
+		);
+		exit;
+	}
+
 	public function render(): void {
 		if (! current_user_can('manage_options')) {
 			return;
@@ -63,10 +122,12 @@ class AGSM_Admin_Page {
 		$dry_run = $this->migrator->dry_run($pending);
 		$health  = $this->migrator->site_health();
 		$logs    = array_reverse($this->migrator->logs());
+		$github  = $this->updater->settings();
+		$github_logs = array_reverse($this->updater->logs());
 		?>
 		<div class="wrap agsm-wrap">
 			<h1>Antigravity Site Manager</h1>
-			<p>Bu panel, GitHub ile gelen kontrollu icerik migration dosyalarini canli WordPress veritabanina guvenli sekilde uygular.</p>
+			<p>Bu panel, GitHub ile gelen tema/eklenti dosyalarini kontrollu sekilde gunceller ve migration dosyalarini canli WordPress veritabanina guvenli sekilde uygular.</p>
 
 			<?php $this->render_notice(); ?>
 
@@ -75,6 +136,10 @@ class AGSM_Admin_Page {
 				.agsm-card { background: #fff; border: 1px solid #dcdcde; border-radius: 10px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
 				.agsm-card h2 { margin: 0 0 8px; font-size: 16px; }
 				.agsm-card strong { font-size: 28px; }
+				.agsm-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 920px; }
+				.agsm-form-grid label { display: block; font-weight: 700; margin-bottom: 6px; }
+				.agsm-form-grid input[type="text"], .agsm-form-grid input[type="password"] { width: 100%; }
+				.agsm-muted { color: #646970; }
 				.agsm-table { margin-top: 16px; }
 				.agsm-status { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
 				.agsm-status--ok { background: #e7f7ed; color: #116329; }
@@ -97,6 +162,72 @@ class AGSM_Admin_Page {
 					<strong><?php echo esc_html((string) count(array_filter($health, static fn($row) => ! $row['exists']))); ?></strong>
 					<p>Eksik zorunlu sayfa</p>
 				</div>
+			</div>
+
+			<div class="agsm-card" style="margin-top:16px;">
+				<h2>GitHub Dosya Guncelleme</h2>
+				<p>Bu alan GitHub reposundaki son dosyalari indirir, mevcut tema ve eklenti klasorlerini yedekler, ardindan sadece izinli proje klasorlerini gunceller. Migrationlar otomatik uygulanmaz; guncellemeden sonra asagidaki migration onizleme alanindan manuel uygularsiniz.</p>
+
+				<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+					<?php wp_nonce_field('agsm_save_github_settings'); ?>
+					<input type="hidden" name="action" value="agsm_save_github_settings">
+					<div class="agsm-form-grid">
+						<div>
+							<label for="agsm-repository">GitHub Repository</label>
+							<input id="agsm-repository" type="text" name="repository" value="<?php echo esc_attr((string) $github['repository']); ?>" placeholder="owner/repo">
+							<p class="agsm-muted">Ornek: <code>oguzgokyar/TenteTamiri</code></p>
+						</div>
+						<div>
+							<label for="agsm-branch">Branch</label>
+							<input id="agsm-branch" type="text" name="branch" value="<?php echo esc_attr((string) $github['branch']); ?>" placeholder="main">
+						</div>
+						<div>
+							<label for="agsm-token">GitHub Token</label>
+							<input id="agsm-token" type="password" name="token" value="" autocomplete="new-password" placeholder="<?php echo esc_attr($this->updater->masked_token()); ?>">
+							<p class="agsm-muted">Public repo icin bos birakilabilir. Private repo icin sadece repo okuma yetkili token kullanin.</p>
+						</div>
+						<div>
+							<label>&nbsp;</label>
+							<label style="font-weight:400;">
+								<input type="checkbox" name="clear_token" value="1"> Kayitli tokeni temizle
+							</label>
+						</div>
+					</div>
+					<?php submit_button('GitHub Ayarlarini Kaydet', 'secondary', 'submit', false); ?>
+				</form>
+
+				<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="margin-top: 16px;">
+					<?php wp_nonce_field('agsm_sync_github'); ?>
+					<input type="hidden" name="action" value="agsm_sync_github">
+					<?php submit_button('GitHubdan Dosyalari Guncelle', 'primary', 'submit', false); ?>
+				</form>
+
+				<p class="agsm-muted">Guncellenen hedefler: <code>wp-content/themes/antigravity-elementor</code> ve <code>wp-content/plugins/antigravity-site-manager</code>.</p>
+
+				<?php if (! empty($github_logs)) : ?>
+					<table class="widefat striped agsm-table">
+						<thead>
+							<tr>
+								<th>Tarih</th>
+								<th>Repo</th>
+								<th>Branch</th>
+								<th>Durum</th>
+								<th>Yedek</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach (array_slice($github_logs, 0, 5) as $log) : ?>
+								<tr>
+									<td><?php echo esc_html($log['time'] ?? ''); ?></td>
+									<td><?php echo esc_html($log['repository'] ?? ''); ?></td>
+									<td><?php echo esc_html($log['branch'] ?? ''); ?></td>
+									<td><?php echo esc_html($log['status'] ?? ''); ?></td>
+									<td><code><?php echo esc_html($log['backup_dir'] ?? ''); ?></code></td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				<?php endif; ?>
 			</div>
 
 			<div class="agsm-card">
@@ -207,6 +338,20 @@ class AGSM_Admin_Page {
 
 		if ('error' === $notice) {
 			echo '<div class="notice notice-error is-dismissible"><p>Migration uygulanirken hata olustu. Loglari kontrol edin.</p></div>';
+		}
+
+		if ('github_settings_saved' === $notice) {
+			echo '<div class="notice notice-success is-dismissible"><p>GitHub ayarlari kaydedildi.</p></div>';
+		}
+
+		if ('github_synced' === $notice) {
+			echo '<div class="notice notice-success is-dismissible"><p>GitHub dosyalari guncellendi. Simdi bekleyen migrationlari kontrol edin.</p></div>';
+		}
+
+		if ('github_error' === $notice) {
+			$message = sanitize_text_field(wp_unslash($_GET['agsm_message'] ?? ''));
+			$text    = $message ? 'GitHub guncellemesi basarisiz: ' . $message : 'GitHub guncellemesi basarisiz.';
+			echo '<div class="notice notice-error is-dismissible"><p>' . esc_html($text) . '</p></div>';
 		}
 	}
 }
