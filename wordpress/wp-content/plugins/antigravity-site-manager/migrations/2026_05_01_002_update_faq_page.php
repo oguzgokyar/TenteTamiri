@@ -23,6 +23,10 @@ return [
 				'_rank_math_title'       => 'SSS | Istanbul Tente Tamiri ve Pergola Servisi',
 				'_rank_math_description' => 'Istanbul tente tamiri, pergola tamiri, zip perde tamiri, tente motoru, kumas degisimi ve mafsal onarimi hakkinda sik sorular.',
 			],
+			'menu'      => [
+				'location' => 'primary',
+				'order'    => 6,
+			],
 		],
 	],
 ];
