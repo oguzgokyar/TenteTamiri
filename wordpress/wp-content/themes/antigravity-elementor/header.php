@@ -72,6 +72,10 @@
 						<span></span>
 					</button>
 
+					<div class="site-menu-bar__mobile-brand">
+						<?php echo antigravity_site_logo('site-logo site-logo--mobile-header'); ?>
+					</div>
+
 					<nav class="site-nav" aria-label="<?php esc_attr_e('Primary menu', 'antigravity-elementor'); ?>">
 						<?php
 						wp_nav_menu(

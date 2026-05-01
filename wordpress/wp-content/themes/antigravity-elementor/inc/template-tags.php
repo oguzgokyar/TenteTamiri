@@ -363,10 +363,6 @@ function antigravity_page_intro(string $eyebrow, string $title, string $descript
 					<p class="eyebrow"><?php echo esc_html($eyebrow); ?></p>
 					<h1><?php echo esc_html($title); ?></h1>
 					<p class="page-hero__copy"><?php echo esc_html($description); ?></p>
-					<div class="button-row page-hero__actions">
-						<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
-						<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
-					</div>
 				</div>
 			</div>
 			<div class="page-hero__quickbar" data-reveal="lift">
