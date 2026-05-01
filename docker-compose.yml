@@ -1,0 +1,58 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wordpress}
+      MYSQL_USER: ${MYSQL_USER:-wordpress}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-wordpress}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+    command:
+      - --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:6.8-php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-wordpress}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-wordpress}
+      WORDPRESS_CONFIG_EXTRA: |
+        if (!defined('WP_DEBUG')) { define('WP_DEBUG', false); }
+        if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', false); }
+        if (!defined('FS_METHOD')) { define('FS_METHOD', 'direct'); }
+        if (!defined('DISABLE_WP_CRON')) { define('DISABLE_WP_CRON', true); }
+        if (!defined('AUTOMATIC_UPDATER_DISABLED')) { define('AUTOMATIC_UPDATER_DISABLED', true); }
+        if (!defined('WP_AUTO_UPDATE_CORE')) { define('WP_AUTO_UPDATE_CORE', false); }
+        if (!defined('WP_HTTP_BLOCK_EXTERNAL')) { define('WP_HTTP_BLOCK_EXTERNAL', true); }
+        if (!defined('WP_ACCESSIBLE_HOSTS')) { define('WP_ACCESSIBLE_HOSTS', 'localhost,127.0.0.1,db'); }
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wordpress/.htaccess:/var/www/html/.htaccess
+      - ./wordpress/wp-content/themes/antigravity-elementor:/var/www/html/wp-content/themes/antigravity-elementor
+      - ./wordpress/wp-content/plugins/antigravity-site-manager:/var/www/html/wp-content/plugins/antigravity-site-manager
+      - ./wordpress/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./wordpress/php/performance.ini:/usr/local/etc/php/conf.d/performance.ini
+
+  phpmyadmin:
+    image: phpmyadmin:5-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${PHPMYADMIN_PORT:-8081}:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+
+volumes:
+  db_data:
+  wordpress_data:

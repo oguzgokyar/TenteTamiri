@@ -1,0 +1,101 @@
+{
+  "colors": {
+    "brand": {
+      "primary": "#1a2f3a",
+      "secondary": "#c46f2a",
+      "accent": "#d6a24c"
+    },
+    "surface": {
+      "canvas": "#f3efe8",
+      "base": "#fdfbf7",
+      "raised": "#ffffff",
+      "muted": "#ebe5db",
+      "strong": "#101a20"
+    },
+    "text": {
+      "primary": "#172126",
+      "secondary": "#5d676d",
+      "inverse": "#f8f5f0",
+      "muted": "#727b81"
+    },
+    "border": {
+      "soft": "#d7cec2",
+      "strong": "#beaf9b"
+    },
+    "status": {
+      "success": "#0e825c",
+      "warning": "#b97a1f",
+      "danger": "#bf4a37"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": "'Space Grotesk', 'Segoe UI', sans-serif",
+      "body": "'Manrope', 'Segoe UI', sans-serif",
+      "mono": "'JetBrains Mono', 'Consolas', monospace"
+    },
+    "fontSize": {
+      "hero": "clamp(3rem, 6vw, 5.5rem)",
+      "display": "clamp(2.35rem, 3vw, 3.6rem)",
+      "h1": "clamp(2rem, 3vw, 3rem)",
+      "h2": "clamp(1.65rem, 2vw, 2.4rem)",
+      "h3": "1.4rem",
+      "body": "1rem",
+      "small": "0.92rem"
+    },
+    "fontWeight": {
+      "regular": "400",
+      "medium": "500",
+      "semibold": "600",
+      "bold": "700"
+    },
+    "lineHeight": {
+      "tight": "1.05",
+      "heading": "1.15",
+      "body": "1.65"
+    }
+  },
+  "spacing": {
+    "3xs": "0.25rem",
+    "2xs": "0.5rem",
+    "xs": "0.75rem",
+    "sm": "1rem",
+    "md": "1.5rem",
+    "lg": "2rem",
+    "xl": "3rem",
+    "2xl": "4.5rem",
+    "3xl": "6rem",
+    "4xl": "8rem"
+  },
+  "layout": {
+    "container": "min(1120px, calc(100vw - 2rem))",
+    "wide": "min(1320px, calc(100vw - 2rem))",
+    "sidebar": "320px",
+    "content": "minmax(0, 1fr)",
+    "gutter": "1rem",
+    "sectionInset": "clamp(4rem, 7vw, 7rem)"
+  },
+  "effects": {
+    "radius": {
+      "sm": "14px",
+      "md": "22px",
+      "lg": "32px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "soft": "0 18px 45px rgba(16, 26, 32, 0.08)",
+      "card": "0 28px 60px rgba(16, 26, 32, 0.14)",
+      "focus": "0 0 0 4px rgba(214, 162, 76, 0.18)"
+    },
+    "transition": {
+      "base": "220ms ease",
+      "slow": "380ms ease"
+    }
+  },
+  "breakpoints": {
+    "sm": "640px",
+    "md": "840px",
+    "lg": "1120px",
+    "xl": "1320px"
+  }
+}

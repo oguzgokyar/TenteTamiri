@@ -1,0 +1,75 @@
+<?php
+/**
+ * Auto-generated from shared/business-profile.json.
+ */
+
+return [
+  'brand' => [
+    'name' => 'Istanbul Tente Tamircisi',
+    'shortName' => 'Istanbul Tente Tamircisi',
+    'tagline' => 'Pergola, tente ve zip perde sistemlerinde Istanbul geneli tamir ve bakim servisi'
+  ],
+  'contact' => [
+    'phoneDisplay' => '+90 554 130 33 18',
+    'phoneHref' => 'tel:+905541303318',
+    'whatsAppHref' => 'https://wa.me/905541303318',
+    'whatsAppLabel' => 'WhatsApp Destek',
+    'email' => ''
+  ],
+  'location' => [
+    'streetAddress' => 'Abdurrahmangazi, Belediye Cd. No:8',
+    'district' => 'Sultanbeyli',
+    'city' => 'Istanbul',
+    'postalCode' => '34920',
+    'country' => 'TR',
+    'fullAddress' => 'Abdurrahmangazi, Belediye Cd. No:8, 34920 Sultanbeyli/Istanbul',
+    'latitude' => 40.96887,
+    'longitude' => 29.26741
+  ],
+  'serviceArea' => [
+    'city' => 'Istanbul',
+    'coverageLabel' => 'Istanbul geneli servis',
+    'districts' => [
+      'Sultanbeyli',
+      'Sancaktepe',
+      'Pendik',
+      'Kartal',
+      'Maltepe',
+      'Kadikoy',
+      'Umraniye',
+      'Atasehir',
+      'Cekmekoy',
+      'Basaksehir',
+      'Kucukcekmece',
+      'Bahcelievler'
+    ]
+  ],
+  'business' => [
+    'hoursLabel' => '7/24 Servis',
+    'openingHour' => '00:00',
+    'closingHour' => '23:59',
+    'priceModel' => 'Ucretsiz kesif ve teklif',
+    'sameDayLabel' => 'Ayni gun servis planlamasi',
+    'experienceLabel' => 'Yerinde tespit ve parca degisim destegi'
+  ],
+  'seo' => [
+    'primaryKeywords' => [
+      'istanbul tente tamiri',
+      'pergola tamiri',
+      'istanbul tente servisi',
+      'zip perde tamiri',
+      'tente motoru tamiri',
+      'tente kumasi degisimi',
+      'mekanizma ve mafsal onarimi'
+    ],
+    'serviceKeywords' => [
+      'anasayfa' => 'Istanbul tente tamiri, pergola tamiri ve zip perde servisi',
+      'tente-tamiri' => 'Istanbul tente tamiri ve tente servisi',
+      'pergola-tamiri' => 'Istanbul pergola tamiri ve pergola servisi',
+      'zip-perde-tamiri' => 'Istanbul zip perde tamiri',
+      'tente-motoru-tamiri' => 'Tente motoru tamiri Istanbul',
+      'tente-kumasi-degisimi' => 'Tente kumasi degisimi Istanbul',
+      'mekanizma-ve-mafsal-onarimi' => 'Tente mekanizma ve mafsal onarimi Istanbul'
+    ]
+  ]
+];

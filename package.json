@@ -1,0 +1,16 @@
+{
+  "name": "wptema-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "business:build": "node scripts/build-business-profile.mjs",
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "preview:setup": "npm run tokens:build && npm run business:build && npm --prefix preview install",
+    "preview:install": "npm --prefix preview install",
+    "preview:dev": "npm --prefix preview run dev",
+    "preview:build": "npm --prefix preview run build",
+    "wp:up": "docker compose up -d",
+    "wp:down": "docker compose down",
+    "wp:logs": "docker compose logs -f wordpress"
+  }
+}

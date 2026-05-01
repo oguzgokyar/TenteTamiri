@@ -1,0 +1,20 @@
+node_modules/
+preview/node_modules/
+preview/dist/
+preview/.vite/
+.env
+.DS_Store
+Thumbs.db
+
+# WordPress runtime and third-party plugins.
+wordpress/wp-content/plugins/*
+!wordpress/wp-content/plugins/antigravity-site-manager/
+!wordpress/wp-content/plugins/antigravity-site-manager/**
+wordpress/wp-content/uploads/
+wordpress/wp-content/cache/
+wordpress/wp-content/upgrade/
+wordpress/wp-content/debug.log
+
+# Local/editor noise.
+*.log
+*.tmp
