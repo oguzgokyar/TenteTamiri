@@ -119,6 +119,20 @@
 						<p><?php esc_html_e('Tente, pergola ve zip perde arizalarinda yerinde tespit ve onarim destegi.', 'antigravity-elementor'); ?></p>
 					</div>
 
+					<nav class="site-mobile-nav" aria-label="<?php esc_attr_e('Mobil ana menu', 'antigravity-elementor'); ?>">
+						<?php
+						wp_nav_menu(
+							[
+								'theme_location' => 'primary',
+								'menu_id'        => 'mobile-menu',
+								'container'      => false,
+								'menu_class'     => 'site-mobile-nav__menu',
+								'fallback_cb'    => 'wp_page_menu',
+							]
+						);
+						?>
+					</nav>
+
 					<div class="site-mobile-drawer__contacts">
 						<a href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>">
 							<?php echo antigravity_icon('phone', 'icon-mark icon-mark--header'); ?>
@@ -141,25 +155,6 @@
 								<small><?php echo esc_html(antigravity_full_address()); ?></small>
 							</span>
 						</div>
-					</div>
-
-					<nav class="site-mobile-nav" aria-label="<?php esc_attr_e('Mobil ana menu', 'antigravity-elementor'); ?>">
-						<?php
-						wp_nav_menu(
-							[
-								'theme_location' => 'primary',
-								'menu_id'        => 'mobile-menu',
-								'container'      => false,
-								'menu_class'     => 'site-mobile-nav__menu',
-								'fallback_cb'    => 'wp_page_menu',
-							]
-						);
-						?>
-					</nav>
-
-					<div class="site-mobile-drawer__actions">
-						<a class="button" href="<?php echo esc_url(home_url('/iletisim/')); ?>" title="<?php esc_attr_e('Tente ve pergola servisi icin teklif al', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Tente ve pergola servisi icin teklif al', 'antigravity-elementor'); ?>"><?php esc_html_e('Teklif Al', 'antigravity-elementor'); ?></a>
-						<a class="button button--ghost button--ghost-light" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php esc_html_e('Servisi Ara', 'antigravity-elementor'); ?></a>
 					</div>
 				</aside>
 			</div>
