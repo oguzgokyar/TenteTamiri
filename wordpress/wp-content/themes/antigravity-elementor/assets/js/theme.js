@@ -1,4 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const getStickyHeaderOffset = () => {
+    const header = document.querySelector("[data-site-header]");
+
+    if (!header) {
+      return 0;
+    }
+
+    return Math.min(header.getBoundingClientRect().height + 18, 112);
+  };
+
+  const scrollToHashTarget = (hash, shouldUpdateHistory = true) => {
+    if (!hash || hash === "#") {
+      return false;
+    }
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+
+    if (!target) {
+      return false;
+    }
+
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - getStickyHeaderOffset();
+
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+
+    if (shouldUpdateHistory) {
+      window.history.pushState(null, "", hash);
+    }
+
+    return true;
+  };
+
   const initRevealMotion = (root = document) => {
     const revealGroups = [
       {
@@ -46,10 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!elements.length) {
       return;
     }
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
 
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       elements.forEach((element) => element.classList.add("is-visible"));
@@ -122,6 +158,29 @@ document.addEventListener("DOMContentLoaded", () => {
   mobileDrawerLinks.forEach((link) => {
     link.addEventListener("click", closeMobileDrawer);
   });
+
+  document.querySelectorAll('a[href*="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const url = new URL(link.href, window.location.href);
+
+      if (
+        url.origin !== window.location.origin ||
+        url.pathname.replace(/\/$/, "") !== window.location.pathname.replace(/\/$/, "")
+      ) {
+        return;
+      }
+
+      if (scrollToHashTarget(url.hash)) {
+        event.preventDefault();
+      }
+    });
+  });
+
+  if (window.location.hash) {
+    window.setTimeout(() => {
+      scrollToHashTarget(window.location.hash, false);
+    }, 120);
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {

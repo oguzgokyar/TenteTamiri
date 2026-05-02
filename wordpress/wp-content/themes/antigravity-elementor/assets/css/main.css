@@ -2,6 +2,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 
 body {
@@ -104,6 +105,10 @@ select {
   z-index: 30;
   background: #fff;
   box-shadow: 0 18px 42px rgba(16, 26, 32, 0.1);
+}
+
+:where(section, article, main, header, footer, div)[id] {
+  scroll-margin-top: 92px;
 }
 
 .site-topbar {
@@ -4124,6 +4129,10 @@ input[type="url"]:focus {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .reveal-item,
   .hero-slide,
   .button,
