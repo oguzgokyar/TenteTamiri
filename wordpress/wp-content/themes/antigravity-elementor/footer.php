@@ -108,8 +108,14 @@
 			</div>
 		</footer>
 		<div class="mobile-sticky-cta">
-			<a class="button" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>"><?php esc_html_e('Hemen Ara', 'antigravity-elementor'); ?></a>
-			<a class="button button--ghost" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>"><?php echo esc_html(antigravity_contact_whatsapp_label()); ?></a>
+			<a class="mobile-sticky-cta__button mobile-sticky-cta__button--phone" href="<?php echo esc_url(antigravity_contact_phone_href()); ?>" title="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('Istanbul Tente Tamircisi telefon hattini ara', 'antigravity-elementor'); ?>">
+				<?php echo antigravity_icon('phone'); ?>
+				<span><?php esc_html_e('Ara', 'antigravity-elementor'); ?></span>
+			</a>
+			<a class="mobile-sticky-cta__button mobile-sticky-cta__button--whatsapp" href="<?php echo esc_url(antigravity_contact_whatsapp_href()); ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>" aria-label="<?php esc_attr_e('WhatsApp ile servis talebi olustur', 'antigravity-elementor'); ?>">
+				<?php echo antigravity_icon('message'); ?>
+				<span><?php esc_html_e('WhatsApp', 'antigravity-elementor'); ?></span>
+			</a>
 		</div>
 		<aside class="service-widget reveal-item is-visible" data-service-widget data-reveal="soft-zoom" aria-label="<?php esc_attr_e('Hizli servis yardim widgeti', 'antigravity-elementor'); ?>">
 			<button class="service-widget__close" type="button" data-service-widget-close aria-label="<?php esc_attr_e('Servis yardim widgetini gizle', 'antigravity-elementor'); ?>">

@@ -54,15 +54,15 @@ $services = [
 
 		<div class="card-grid">
 			<?php foreach ($services as $service) : ?>
-				<article class="feature-card">
+				<a class="feature-card feature-card--link" href="<?php echo esc_url(home_url('/' . sanitize_title($service['title']) . '/')); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>">
 					<div class="feature-card__media" style="background-image: linear-gradient(180deg, rgba(16, 26, 32, 0.18), rgba(16, 26, 32, 0.66)), url('<?php echo esc_url($service['image']); ?>');">
 						<?php echo antigravity_icon($service['icon'], 'icon-mark icon-mark--light'); ?>
 					</div>
 					<p class="eyebrow"><?php esc_html_e('Servis', 'antigravity-elementor'); ?></p>
 					<h3><?php echo esc_html($service['title']); ?></h3>
 					<p><?php echo esc_html($service['description']); ?></p>
-					<a class="text-link" href="<?php echo esc_url(home_url('/' . sanitize_title($service['title']) . '/')); ?>" title="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>" aria-label="<?php echo esc_attr(sprintf(__('%s hizmet detaylarini incele', 'antigravity-elementor'), $service['title'])); ?>"><?php esc_html_e('Detaylari incele', 'antigravity-elementor'); ?></a>
-				</article>
+					<span class="text-link"><?php esc_html_e('Detaylari incele', 'antigravity-elementor'); ?></span>
+				</a>
 			<?php endforeach; ?>
 		</div>
 	</div>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="96" viewBox="0 0 360 96" role="img" aria-labelledby="title desc">
+  <title id="title">Istanbul Tente Tamircisi Mobil Logo</title>
+  <desc id="desc">Koyu mobil menu ve header zemini icin okunakli logo</desc>
+  <defs>
+    <linearGradient id="mobileMarkGradient" x1="8" y1="8" x2="78" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8E4B3"/>
+      <stop offset=".48" stop-color="#D6A24C"/>
+      <stop offset="1" stop-color="#C46F2A"/>
+    </linearGradient>
+    <filter id="textShadow" x="-8%" y="-20%" width="116%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#071015" flood-opacity=".65"/>
+    </filter>
+  </defs>
+  <rect width="360" height="96" rx="22" fill="none"/>
+  <g transform="translate(8 8)">
+    <path d="M40 3c18.8 0 34 15.2 34 34v8H6v-8C6 18.2 21.2 3 40 3Z" fill="url(#mobileMarkGradient)"/>
+    <path d="M12 41h56v16H12z" fill="#FFF8EA"/>
+    <path d="M18 57h44l-7 16H25l-7-16Z" fill="#F8E4B3"/>
+    <path d="M19 37c4-13 12-21 21-21s17 8 21 21H19Z" fill="none" stroke="#FFF8EA" stroke-width="5" stroke-linecap="round"/>
+    <path d="M40 13v63" stroke="#FFF8EA" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(100 25)" filter="url(#textShadow)">
+    <text x="0" y="24" fill="#FFF8EA" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing=".8">ISTANBUL</text>
+    <text x="0" y="51" fill="#D6A24C" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing=".7">TENTE TAMIRCISI</text>
+    <text x="1" y="70" fill="#F8E4B3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">PERGOLA - TENTE - ZIP PERDE SERVISI</text>
+  </g>
+</svg>

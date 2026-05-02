@@ -223,7 +223,9 @@ function antigravity_render_rank_math_breadcrumbs(): bool {
 }
 
 function antigravity_site_logo(string $class = 'site-logo'): string {
-	$logo_url = ANTIGRAVITY_THEME_URI . '/assets/images/istanbul-tente-logo.svg';
+	$is_mobile_logo = false !== strpos($class, 'site-logo--mobile-header') || false !== strpos($class, 'site-logo--drawer');
+	$logo_file      = $is_mobile_logo ? 'istanbul-tente-logo-mobile.svg' : 'istanbul-tente-logo.svg';
+	$logo_url       = ANTIGRAVITY_THEME_URI . '/assets/images/' . $logo_file;
 
 	return sprintf(
 		'<a class="%1$s" href="%2$s" rel="home" title="%5$s" aria-label="%5$s"><img src="%3$s" alt="%4$s" width="360" height="96"></a>',
